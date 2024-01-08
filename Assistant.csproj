@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Fonts\Alibaba-PuHuiTi-Regular.ttf" />
+    <None Remove="Resources\Fonts\iconfont.ttf" />
+    <None Remove="Resources\Images\Flag\ca-Es.png" />
+    <None Remove="Resources\Images\Flag\cn.png" />
+    <None Remove="Resources\Images\Flag\cs.png" />
+    <None Remove="Resources\Images\Flag\en.png" />
+    <None Remove="Resources\Images\Flag\es.png" />
+    <None Remove="Resources\Images\Flag\fa.png" />
+    <None Remove="Resources\Images\Flag\fr.png" />
+    <None Remove="Resources\Images\Flag\ja.png" />
+    <None Remove="Resources\Images\Flag\ko-KR.png" />
+    <None Remove="Resources\Images\Flag\pl.png" />
+    <None Remove="Resources\Images\Flag\pt-BR.png" />
+    <None Remove="Resources\Images\Flag\ru.png" />
+    <None Remove="Resources\Images\Flag\tr.png" />
+    <None Remove="Resources\Images\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Antelcat.I18N.WPF" Version="1.0.1" />
+    <PackageReference Include="AvalonEdit" Version="6.3.0.90" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="FluentScheduler" Version="5.5.1" />
+    <PackageReference Include="HandyControls" Version="3.5.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="System.IO.Ports" Version="8.0.0" />
+    <PackageReference Include="ValueConverters" Version="3.0.26" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Tools\Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\Alibaba-PuHuiTi-Regular.ttf" />
+    <Resource Include="Resources\Fonts\iconfont.ttf" />
+    <Resource Include="Resources\Images\Flag\ca-Es.png" />
+    <Resource Include="Resources\Images\Flag\cn.png" />
+    <Resource Include="Resources\Images\Flag\cs.png" />
+    <Resource Include="Resources\Images\Flag\en.png" />
+    <Resource Include="Resources\Images\Flag\es.png" />
+    <Resource Include="Resources\Images\Flag\fa.png" />
+    <Resource Include="Resources\Images\Flag\fr.png" />
+    <Resource Include="Resources\Images\Flag\ja.png" />
+    <Resource Include="Resources\Images\Flag\ko-KR.png" />
+    <Resource Include="Resources\Images\Flag\pl.png" />
+    <Resource Include="Resources\Images\Flag\pt-BR.png" />
+    <Resource Include="Resources\Images\Flag\ru.png" />
+    <Resource Include="Resources\Images\Flag\tr.png" />
+    <Resource Include="Resources\Images\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Langs\Lang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Langs\Lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

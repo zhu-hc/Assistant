@@ -1,0 +1,306 @@
+﻿<UserControl x:Class="Assistant.Views.SerialPortView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Assistant.Views"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:vm="clr-namespace:Assistant.ViewModels"
+             xmlns:models="clr-namespace:Assistant.Data.Models"
+             xmlns:converters="clr-namespace:Assistant.Tools.Converters"
+             d:DataContext="{d:DesignInstance Type=vm:SerialPortViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:MultiBindingConverter x:Key="MultiConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource BorderRegion}"
+                Margin="5">
+            <StackPanel Orientation="Vertical">
+                <ComboBox hc:InfoElement.Placeholder="端口"
+                          Style="{StaticResource ComboBoxExtend}"
+                          HorizontalContentAlignment="Center" />
+                <TextBox Margin="0 8"
+                         Text="115200"
+                         HorizontalContentAlignment="Center"
+                         ToolTip="波特率" />
+                <ComboBox Style="{StaticResource ComboBoxExtend}"
+                          HorizontalContentAlignment="Center"
+                          SelectedIndex="3"
+                          ToolTip="数据位">
+                    <ComboBoxItem Content="5 Bit" />
+                    <ComboBoxItem Content="6 Bit" />
+                    <ComboBoxItem Content="7 Bit" />
+                    <ComboBoxItem Content="8 Bit" />
+                </ComboBox>
+                <ComboBox Margin="0 8"
+                          Style="{StaticResource ComboBoxExtend}"
+                          HorizontalContentAlignment="Center"
+                          SelectedIndex="1"
+                          ToolTip="停止位">
+                    <ComboBoxItem Content="0 Bit" />
+                    <ComboBoxItem Content="1 Bit" />
+                    <ComboBoxItem Content="1.5 Bit" />
+                    <ComboBoxItem Content="2 Bit" />
+                </ComboBox>
+                <ComboBox Style="{StaticResource ComboBoxExtend}"
+                          HorizontalContentAlignment="Center"
+                          SelectedIndex="0"
+                          ToolTip="校验位">
+                    <ComboBoxItem Content="None" />
+                    <ComboBoxItem Content="Even" />
+                    <ComboBoxItem Content="Mark" />
+                    <ComboBoxItem Content="Spack" />
+                </ComboBox>
+                <Button Content="打开"
+                        Margin="0 8"
+                        HorizontalAlignment="Stretch"
+                        FontSize="16"
+                        Height="36" />
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0 5">
+                    <ToggleButton IsChecked="True"
+                                  HorizontalAlignment="Center"
+                                  Style="{StaticResource ToggleButtonSwitch}" />
+                    <TextBlock Text="Hex"
+                               Margin="5 0"
+                               Foreground="{DynamicResource PrimaryTextBrush}" />
+                </StackPanel>
+
+                <Button Content="Tx:0"
+                        Margin="0 8"
+                        HorizontalAlignment="Stretch"
+                        FontSize="16"
+                        Height="36"
+                        BorderThickness="0" />
+                <Button Content="Rx:0"
+                        HorizontalAlignment="Stretch"
+                        FontSize="16"
+                        Height="36"
+                        BorderThickness="0" />
+                <Button Content="清屏"
+                        Margin="0 8"
+                        HorizontalAlignment="Stretch"
+                        FontSize="16"
+                        Height="36" />
+            </StackPanel>
+        </Border>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="240" />
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource BorderRegion}"
+                    Margin="0 5 5 5">
+                <avalonEdit:TextEditor Foreground="{DynamicResource PrimaryTextBrush}"
+                                       Background="{DynamicResource RegionBrush}"
+                                       HorizontalScrollBarVisibility="Disabled"
+                                       VerticalScrollBarVisibility="Auto"
+                                       xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                                       FontSize="16"
+                                       IsReadOnly="True"
+                                       Text="Test">
+                </avalonEdit:TextEditor>
+            </Border>
+            <Border Grid.Row="1"
+                    Style="{StaticResource BorderRegion}"
+                    Margin="0 0 5 5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="360" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBox hc:InfoElement.Placeholder="请输入发送内容..."
+                                 Style="{StaticResource TextBoxExtend}"
+                                 VerticalContentAlignment="Top"
+                                 Padding="8"
+                                 TextWrapping="Wrap" />
+                        <StackPanel Grid.Row="1"
+                                    Orientation="Horizontal"
+                                    Margin="0 8 0 0">
+                            <Button Content="发送"
+                                    FontSize="16"
+                                    Height="36" />
+                            <ToggleButton Margin="10 0"
+                                          IsChecked="False"
+                                          HorizontalAlignment="Center"
+                                          Style="{StaticResource ToggleButtonSwitch}"
+                                          ToolTip="十六进制发送" />
+                            <TextBox Text="1000"
+                                     HorizontalContentAlignment="Center"
+                                     ToolTip="发送间隔"
+                                     Width="120" />
+                            <ToggleButton Margin="10 0"
+                                          IsChecked="False"
+                                          HorizontalAlignment="Center"
+                                          Style="{StaticResource ToggleButtonSwitch}"
+                                          ToolTip="定时发送" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1"
+                          Margin="8 0 0 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="8" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="8" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="8" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="8" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0">
+                            <Button DockPanel.Dock="Right"
+                                    Content="发送"
+                                    FontSize="16"
+                                    Height="36"
+                                    Command="{Binding SimpleTransmitCommand}">
+                                <Button.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource MultiConverter}">
+                                        <Binding ElementName="content0"
+                                                 Path="Text" />
+                                        <Binding ElementName="toggle0"
+                                                 Path="IsChecked" />
+                                    </MultiBinding>
+                                </Button.CommandParameter>
+                            </Button>
+                            <ToggleButton Margin="10 0"
+                                          DockPanel.Dock="Right"
+                                          IsChecked="True"
+                                          HorizontalAlignment="Center"
+                                          Style="{StaticResource ToggleButtonSwitch}"
+                                          ToolTip="十六进制发送"
+                                          Name="toggle0" />
+                            <TextBox HorizontalContentAlignment="Left"
+                                     hc:InfoElement.Placeholder="请输入发送内容..."
+                                     Style="{StaticResource TextBoxExtend}"
+                                     Name="content0" />
+                        </DockPanel>
+                        <DockPanel Grid.Row="2">
+                            <Button DockPanel.Dock="Right"
+                                    Content="发送"
+                                    FontSize="16"
+                                    Height="36"
+                                    Command="{Binding SimpleTransmitCommand}">
+                                <Button.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource MultiConverter}">
+                                        <Binding ElementName="content1"
+                                                 Path="Text" />
+                                        <Binding ElementName="toggle1"
+                                                 Path="IsChecked" />
+                                    </MultiBinding>
+                                </Button.CommandParameter>
+                            </Button>
+                            <ToggleButton Margin="10 0"
+                                          DockPanel.Dock="Right"
+                                          IsChecked="True"
+                                          HorizontalAlignment="Center"
+                                          Style="{StaticResource ToggleButtonSwitch}"
+                                          ToolTip="十六进制发送"
+                                          Name="toggle1" />
+                            <TextBox HorizontalContentAlignment="Left"
+                                     hc:InfoElement.Placeholder="请输入发送内容..."
+                                     Style="{StaticResource TextBoxExtend}"
+                                     Name="content1" />
+                        </DockPanel>
+                        <DockPanel Grid.Row="4">
+                            <Button DockPanel.Dock="Right"
+                                    Content="发送"
+                                    FontSize="16"
+                                    Height="36"
+                                    Command="{Binding SimpleTransmitCommand}">
+                                <Button.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource MultiConverter}">
+                                        <Binding ElementName="content2"
+                                                 Path="Text" />
+                                        <Binding ElementName="toggle2"
+                                                 Path="IsChecked" />
+                                    </MultiBinding>
+                                </Button.CommandParameter>
+                            </Button>
+                            <ToggleButton Margin="10 0"
+                                          DockPanel.Dock="Right"
+                                          IsChecked="True"
+                                          HorizontalAlignment="Center"
+                                          Style="{StaticResource ToggleButtonSwitch}"
+                                          ToolTip="十六进制发送"
+                                          Name="toggle2" />
+                            <TextBox HorizontalContentAlignment="Left"
+                                     hc:InfoElement.Placeholder="请输入发送内容..."
+                                     Style="{StaticResource TextBoxExtend}"
+                                     Name="content2" />
+                        </DockPanel>
+                        <DockPanel Grid.Row="6">
+                            <Button DockPanel.Dock="Right"
+                                    Content="发送"
+                                    FontSize="16"
+                                    Height="36"
+                                    Command="{Binding SimpleTransmitCommand}">
+                                <Button.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource MultiConverter}">
+                                        <Binding ElementName="content3"
+                                                 Path="Text" />
+                                        <Binding ElementName="toggle3"
+                                                 Path="IsChecked" />
+                                    </MultiBinding>
+                                </Button.CommandParameter>
+                            </Button>
+                            <ToggleButton Margin="10 0"
+                                          DockPanel.Dock="Right"
+                                          IsChecked="True"
+                                          HorizontalAlignment="Center"
+                                          Style="{StaticResource ToggleButtonSwitch}"
+                                          ToolTip="十六进制发送"
+                                          Name="toggle3" />
+                            <TextBox HorizontalContentAlignment="Left"
+                                     hc:InfoElement.Placeholder="请输入发送内容..."
+                                     Style="{StaticResource TextBoxExtend}"
+                                     Name="content3" />
+                        </DockPanel>
+                        <DockPanel Grid.Row="8">
+                            <Button DockPanel.Dock="Right"
+                                    Content="发送"
+                                    FontSize="16"
+                                    Height="36"
+                                    Command="{Binding SimpleTransmitCommand}">
+                                <Button.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource MultiConverter}">
+                                        <Binding ElementName="content4"
+                                                 Path="Text" />
+                                        <Binding ElementName="toggle4"
+                                                 Path="IsChecked" />
+                                    </MultiBinding>
+                                </Button.CommandParameter>
+                            </Button>
+                            <ToggleButton Margin="10 0"
+                                          DockPanel.Dock="Right"
+                                          IsChecked="True"
+                                          HorizontalAlignment="Center"
+                                          Style="{StaticResource ToggleButtonSwitch}"
+                                          ToolTip="十六进制发送"
+                                          Name="toggle4" />
+                            <TextBox HorizontalContentAlignment="Left"
+                                     hc:InfoElement.Placeholder="请输入发送内容..."
+                                     Style="{StaticResource TextBoxExtend}"
+                                     Name="content4" />
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

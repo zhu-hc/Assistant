@@ -1,0 +1,49 @@
+﻿<Border x:Class="Assistant.Views.Dialogs.TextDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Assistant.Views.Dialogs"
+        xmlns:vm="clr-namespace:Assistant.ViewModels.Dialogs"
+        xmlns:models="clr-namespace:Assistant.Data.Models"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        d:DataContext="{d:DesignInstance Type=vm:TextDialogViewModel}"
+        mc:Ignorable="d"
+        CornerRadius="10"
+        Width="400"
+        Height="240"
+        Background="{DynamicResource RegionBrush}">
+    <hc:SimplePanel>
+        <DockPanel>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Margin="10"
+                        Content="{I18N {x:Static models:LangKeys.Cancel}}"
+                        Command="{Binding CancelCommand}"
+                        FontSize="16"
+                        Height="36"
+                        HorizontalAlignment="Left" />
+                <Button Grid.Column="1"
+                        Margin="10"
+                        Content="{I18N {x:Static models:LangKeys.Confirm}}"
+                        Command="{Binding ConfirmCommand}"
+                        FontSize="16"
+                        Height="36"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource ButtonPrimary}" />
+            </Grid>
+            <TextBlock DockPanel.Dock="Top"
+                       Text="{I18N {Binding Title}}"
+                       d:Text="Text"
+                       Margin="10" />
+            <TextBlock DockPanel.Dock="Top"
+                       Style="{StaticResource TextBlockLargeBold}"
+                       d:Text="Text"
+                       Text="{I18N {Binding Content}}" />
+        </DockPanel>
+    </hc:SimplePanel>
+</Border>
