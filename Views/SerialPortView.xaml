@@ -8,12 +8,15 @@
              xmlns:vm="clr-namespace:Assistant.ViewModels"
              xmlns:models="clr-namespace:Assistant.Data.Models"
              xmlns:converters="clr-namespace:Assistant.Tools.Converters"
+             xmlns:conv="clr-namespace:ValueConverters;assembly=ValueConverters"
              d:DataContext="{d:DesignInstance Type=vm:SerialPortViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="450"
-             d:DesignWidth="800">
+             d:DesignWidth="800"
+             DataContextChanged="UserControl_DataContextChanged">
     <UserControl.Resources>
         <converters:MultiBindingConverter x:Key="MultiConverter" />
+        <conv:BoolInverter x:Key="BoolInverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,15 +28,22 @@
             <StackPanel Orientation="Vertical">
                 <ComboBox hc:InfoElement.Placeholder="端口"
                           Style="{StaticResource ComboBoxExtend}"
-                          HorizontalContentAlignment="Center" />
+                          HorizontalContentAlignment="Center"
+                          Name="cbPort"
+                          DropDownOpened="cbPort_DropDownOpened"
+                          Text="{Binding PortName,Mode=OneWayToSource}"
+                          IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}"/>
                 <TextBox Margin="0 8"
-                         Text="115200"
+                         Text="{Binding BaudRate}"
                          HorizontalContentAlignment="Center"
-                         ToolTip="波特率" />
+                         ToolTip="波特率"
+                         IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}" />
                 <ComboBox Style="{StaticResource ComboBoxExtend}"
                           HorizontalContentAlignment="Center"
+                          Text="{Binding DataBits,Mode=OneWayToSource}"
                           SelectedIndex="3"
-                          ToolTip="数据位">
+                          ToolTip="数据位"
+                          IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}">
                     <ComboBoxItem Content="5 Bit" />
                     <ComboBoxItem Content="6 Bit" />
                     <ComboBoxItem Content="7 Bit" />
@@ -42,8 +52,10 @@
                 <ComboBox Margin="0 8"
                           Style="{StaticResource ComboBoxExtend}"
                           HorizontalContentAlignment="Center"
+                          Text="{Binding StopBits,Mode=OneWayToSource}"
                           SelectedIndex="1"
-                          ToolTip="停止位">
+                          ToolTip="停止位"
+                          IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}">
                     <ComboBoxItem Content="0 Bit" />
                     <ComboBoxItem Content="1 Bit" />
                     <ComboBoxItem Content="1.5 Bit" />
@@ -51,23 +63,27 @@
                 </ComboBox>
                 <ComboBox Style="{StaticResource ComboBoxExtend}"
                           HorizontalContentAlignment="Center"
+                          Text="{Binding Parity,Mode=OneWayToSource}"
                           SelectedIndex="0"
-                          ToolTip="校验位">
+                          ToolTip="校验位"
+                          IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}">
                     <ComboBoxItem Content="None" />
                     <ComboBoxItem Content="Even" />
                     <ComboBoxItem Content="Mark" />
                     <ComboBoxItem Content="Spack" />
                 </ComboBox>
-                <Button Content="打开"
+                <Button Content="{Binding BtnName}"
                         Margin="0 8"
                         HorizontalAlignment="Stretch"
                         FontSize="16"
-                        Height="36" />
+                        Height="36"
+                        Command="{Binding OpenCommand}">
+                </Button>
 
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
                             Margin="0 5">
-                    <ToggleButton IsChecked="True"
+                    <ToggleButton IsChecked="{Binding IsHexShow}"
                                   HorizontalAlignment="Center"
                                   Style="{StaticResource ToggleButtonSwitch}" />
                     <TextBlock Text="Hex"
@@ -75,22 +91,27 @@
                                Foreground="{DynamicResource PrimaryTextBrush}" />
                 </StackPanel>
 
-                <Button Content="Tx:0"
-                        Margin="0 8"
+                <Button Margin="0 8"
                         HorizontalAlignment="Stretch"
                         FontSize="16"
                         Height="36"
-                        BorderThickness="0" />
-                <Button Content="Rx:0"
-                        HorizontalAlignment="Stretch"
+                        BorderThickness="0"
+                        Command="{Binding ClearTxCountCommand}">
+                    <TextBlock Text="{Binding TxCount, StringFormat=Tx:{0}}" />
+                </Button>
+                <Button HorizontalAlignment="Stretch"
                         FontSize="16"
                         Height="36"
-                        BorderThickness="0" />
+                        BorderThickness="0"
+                        Command="{Binding ClearRxCountCommand}">
+                    <TextBlock Text="{Binding RxCount, StringFormat=Rx:{0}}" />
+                </Button>
                 <Button Content="清屏"
                         Margin="0 8"
                         HorizontalAlignment="Stretch"
                         FontSize="16"
-                        Height="36" />
+                        Height="36"
+                        Command="{Binding ClearCommand}"/>
             </StackPanel>
         </Border>
         <Grid Grid.Column="1">
@@ -100,14 +121,14 @@
             </Grid.RowDefinitions>
             <Border Style="{StaticResource BorderRegion}"
                     Margin="0 5 5 5">
-                <avalonEdit:TextEditor Foreground="{DynamicResource PrimaryTextBrush}"
+                <avalonEdit:TextEditor Name="TextEditor"
+                                       Foreground="{DynamicResource PrimaryTextBrush}"
                                        Background="{DynamicResource RegionBrush}"
                                        HorizontalScrollBarVisibility="Disabled"
                                        VerticalScrollBarVisibility="Auto"
                                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                                        FontSize="16"
-                                       IsReadOnly="True"
-                                       Text="Test">
+                                       IsReadOnly="True">
                 </avalonEdit:TextEditor>
             </Border>
             <Border Grid.Row="1"
@@ -127,27 +148,45 @@
                                  Style="{StaticResource TextBoxExtend}"
                                  VerticalContentAlignment="Top"
                                  Padding="8"
-                                 TextWrapping="Wrap" />
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 Name="mainContent"
+                                 IsEnabled="{Binding AutoEnabled, Converter={StaticResource BoolInverter}}"/>
                         <StackPanel Grid.Row="1"
                                     Orientation="Horizontal"
                                     Margin="0 8 0 0">
                             <Button Content="发送"
                                     FontSize="16"
-                                    Height="36" />
+                                    Height="36"
+                                    Command="{Binding SimpleTransmitCommand}"
+                                    Name="mainTransmit">
+                                <Button.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource MultiConverter}">
+                                        <Binding ElementName="mainContent"
+                                                 Path="Text" />
+                                        <Binding ElementName="mainToggle"
+                                                 Path="IsChecked" />
+                                    </MultiBinding>
+                                </Button.CommandParameter>
+                            </Button>
                             <ToggleButton Margin="10 0"
                                           IsChecked="False"
                                           HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
-                                          ToolTip="十六进制发送" />
-                            <TextBox Text="1000"
+                                          ToolTip="十六进制发送"
+                                          Name="mainToggle"
+                                          IsEnabled="{Binding AutoEnabled, Converter={StaticResource BoolInverter}}"/>
+                            <TextBox Text="{Binding AutoInterval}"
                                      HorizontalContentAlignment="Center"
                                      ToolTip="发送间隔"
-                                     Width="120" />
+                                     Width="120"
+                                     IsEnabled="{Binding AutoEnabled, Converter={StaticResource BoolInverter}}"/>
                             <ToggleButton Margin="10 0"
-                                          IsChecked="False"
+                                          IsChecked="{Binding AutoEnabled}"
                                           HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
-                                          ToolTip="定时发送" />
+                                          ToolTip="定时发送"
+                                          Command="{Binding AutoCommand}"/>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Column="1"
