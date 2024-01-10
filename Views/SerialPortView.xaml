@@ -26,7 +26,7 @@
         <Border Style="{StaticResource BorderRegion}"
                 Margin="5">
             <StackPanel Orientation="Vertical">
-                <ComboBox hc:InfoElement.Placeholder="端口"
+                <ComboBox hc:InfoElement.Placeholder="{I18N {x:Static models:LangKeys.Port}}"
                           Style="{StaticResource ComboBoxExtend}"
                           HorizontalContentAlignment="Center"
                           Name="cbPort"
@@ -36,13 +36,13 @@
                 <TextBox Margin="0 8"
                          Text="{Binding BaudRate}"
                          HorizontalContentAlignment="Center"
-                         ToolTip="波特率"
+                         ToolTip="{I18N {x:Static models:LangKeys.BaudRate}}"
                          IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}" />
                 <ComboBox Style="{StaticResource ComboBoxExtend}"
                           HorizontalContentAlignment="Center"
                           Text="{Binding DataBits,Mode=OneWayToSource}"
                           SelectedIndex="3"
-                          ToolTip="数据位"
+                          ToolTip="{I18N {x:Static models:LangKeys.DataBits}}"
                           IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}">
                     <ComboBoxItem Content="5 Bit" />
                     <ComboBoxItem Content="6 Bit" />
@@ -54,7 +54,7 @@
                           HorizontalContentAlignment="Center"
                           Text="{Binding StopBits,Mode=OneWayToSource}"
                           SelectedIndex="1"
-                          ToolTip="停止位"
+                          ToolTip="{I18N {x:Static models:LangKeys.StopBits}}"
                           IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}">
                     <ComboBoxItem Content="0 Bit" />
                     <ComboBoxItem Content="1 Bit" />
@@ -65,14 +65,14 @@
                           HorizontalContentAlignment="Center"
                           Text="{Binding Parity,Mode=OneWayToSource}"
                           SelectedIndex="0"
-                          ToolTip="校验位"
+                          ToolTip="{I18N {x:Static models:LangKeys.CheckBits}}"
                           IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}">
                     <ComboBoxItem Content="None" />
                     <ComboBoxItem Content="Even" />
                     <ComboBoxItem Content="Mark" />
                     <ComboBoxItem Content="Spack" />
                 </ComboBox>
-                <Button Content="{Binding BtnName}"
+                <Button Content="{I18N {Binding BtnName}}"
                         Margin="0 8"
                         HorizontalAlignment="Stretch"
                         FontSize="16"
@@ -106,7 +106,7 @@
                         Command="{Binding ClearRxCountCommand}">
                     <TextBlock Text="{Binding RxCount, StringFormat=Rx:{0}}" />
                 </Button>
-                <Button Content="清屏"
+                <Button Content="{I18N {x:Static models:LangKeys.ClearScreen}}"
                         Margin="0 8"
                         HorizontalAlignment="Stretch"
                         FontSize="16"
@@ -144,7 +144,7 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TextBox hc:InfoElement.Placeholder="请输入发送内容..."
+                        <TextBox hc:InfoElement.Placeholder="{I18N {x:Static models:LangKeys.EnterContent}}"
                                  Style="{StaticResource TextBoxExtend}"
                                  VerticalContentAlignment="Top"
                                  Padding="8"
@@ -155,7 +155,7 @@
                         <StackPanel Grid.Row="1"
                                     Orientation="Horizontal"
                                     Margin="0 8 0 0">
-                            <Button Content="发送"
+                            <Button Content="{I18N {x:Static models:LangKeys.Send}}"
                                     FontSize="16"
                                     Height="36"
                                     Command="{Binding SimpleTransmitCommand}"
@@ -173,19 +173,19 @@
                                           IsChecked="False"
                                           HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
-                                          ToolTip="十六进制发送"
+                                          ToolTip="{I18N {x:Static models:LangKeys.HexSend}}"
                                           Name="mainToggle"
                                           IsEnabled="{Binding AutoEnabled, Converter={StaticResource BoolInverter}}"/>
                             <TextBox Text="{Binding AutoInterval}"
                                      HorizontalContentAlignment="Center"
-                                     ToolTip="发送间隔"
+                                     ToolTip="{I18N {x:Static models:LangKeys.SendInterval}}"
                                      Width="120"
                                      IsEnabled="{Binding AutoEnabled, Converter={StaticResource BoolInverter}}"/>
                             <ToggleButton Margin="10 0"
                                           IsChecked="{Binding AutoEnabled}"
                                           HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
-                                          ToolTip="定时发送"
+                                          ToolTip="{I18N {x:Static models:LangKeys.ScheduledSend}}"
                                           Command="{Binding AutoCommand}"/>
                         </StackPanel>
                     </Grid>
@@ -204,7 +204,7 @@
                         </Grid.RowDefinitions>
                         <DockPanel Grid.Row="0">
                             <Button DockPanel.Dock="Right"
-                                    Content="发送"
+                                    Content="{I18N {x:Static models:LangKeys.Send}}"
                                     FontSize="16"
                                     Height="36"
                                     Command="{Binding SimpleTransmitCommand}">
@@ -222,16 +222,16 @@
                                           IsChecked="True"
                                           HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
-                                          ToolTip="十六进制发送"
+                                          ToolTip="{I18N {x:Static models:LangKeys.HexSend}}"
                                           Name="toggle0" />
                             <TextBox HorizontalContentAlignment="Left"
-                                     hc:InfoElement.Placeholder="请输入发送内容..."
+                                     hc:InfoElement.Placeholder="{I18N {x:Static models:LangKeys.EnterContent}}"
                                      Style="{StaticResource TextBoxExtend}"
                                      Name="content0" />
                         </DockPanel>
                         <DockPanel Grid.Row="2">
                             <Button DockPanel.Dock="Right"
-                                    Content="发送"
+                                    Content="{I18N {x:Static models:LangKeys.Send}}"
                                     FontSize="16"
                                     Height="36"
                                     Command="{Binding SimpleTransmitCommand}">
@@ -249,16 +249,16 @@
                                           IsChecked="True"
                                           HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
-                                          ToolTip="十六进制发送"
+                                          ToolTip="{I18N {x:Static models:LangKeys.HexSend}}"
                                           Name="toggle1" />
                             <TextBox HorizontalContentAlignment="Left"
-                                     hc:InfoElement.Placeholder="请输入发送内容..."
+                                     hc:InfoElement.Placeholder="{I18N {x:Static models:LangKeys.EnterContent}}"
                                      Style="{StaticResource TextBoxExtend}"
                                      Name="content1" />
                         </DockPanel>
                         <DockPanel Grid.Row="4">
                             <Button DockPanel.Dock="Right"
-                                    Content="发送"
+                                    Content="{I18N {x:Static models:LangKeys.Send}}"
                                     FontSize="16"
                                     Height="36"
                                     Command="{Binding SimpleTransmitCommand}">
@@ -276,16 +276,16 @@
                                           IsChecked="True"
                                           HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
-                                          ToolTip="十六进制发送"
+                                          ToolTip="{I18N {x:Static models:LangKeys.HexSend}}"
                                           Name="toggle2" />
                             <TextBox HorizontalContentAlignment="Left"
-                                     hc:InfoElement.Placeholder="请输入发送内容..."
+                                     hc:InfoElement.Placeholder="{I18N {x:Static models:LangKeys.EnterContent}}"
                                      Style="{StaticResource TextBoxExtend}"
                                      Name="content2" />
                         </DockPanel>
                         <DockPanel Grid.Row="6">
                             <Button DockPanel.Dock="Right"
-                                    Content="发送"
+                                    Content="{I18N {x:Static models:LangKeys.Send}}"
                                     FontSize="16"
                                     Height="36"
                                     Command="{Binding SimpleTransmitCommand}">
@@ -303,16 +303,16 @@
                                           IsChecked="True"
                                           HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
-                                          ToolTip="十六进制发送"
+                                          ToolTip="{I18N {x:Static models:LangKeys.HexSend}}"
                                           Name="toggle3" />
                             <TextBox HorizontalContentAlignment="Left"
-                                     hc:InfoElement.Placeholder="请输入发送内容..."
+                                     hc:InfoElement.Placeholder="{I18N {x:Static models:LangKeys.EnterContent}}"
                                      Style="{StaticResource TextBoxExtend}"
                                      Name="content3" />
                         </DockPanel>
                         <DockPanel Grid.Row="8">
                             <Button DockPanel.Dock="Right"
-                                    Content="发送"
+                                    Content="{I18N {x:Static models:LangKeys.Send}}"
                                     FontSize="16"
                                     Height="36"
                                     Command="{Binding SimpleTransmitCommand}">
@@ -330,10 +330,10 @@
                                           IsChecked="True"
                                           HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
-                                          ToolTip="十六进制发送"
+                                          ToolTip="{I18N {x:Static models:LangKeys.HexSend}}"
                                           Name="toggle4" />
                             <TextBox HorizontalContentAlignment="Left"
-                                     hc:InfoElement.Placeholder="请输入发送内容..."
+                                     hc:InfoElement.Placeholder="{I18N {x:Static models:LangKeys.EnterContent}}"
                                      Style="{StaticResource TextBoxExtend}"
                                      Name="content4" />
                         </DockPanel>

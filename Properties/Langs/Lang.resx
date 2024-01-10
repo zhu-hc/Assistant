@@ -141,4 +141,43 @@
   <data name="Welcome" xml:space="preserve">
     <value>欢迎</value>
   </data>
+  <data name="Port" xml:space="preserve">
+    <value>端口</value>
+  </data>
+  <data name="BaudRate" xml:space="preserve">
+    <value>波特率</value>
+  </data>
+  <data name="DataBits" xml:space="preserve">
+    <value>数据位</value>
+  </data>
+  <data name="StopBits" xml:space="preserve">
+    <value>停止位</value>
+  </data>
+  <data name="CheckBits" xml:space="preserve">
+    <value>校验位</value>
+  </data>
+  <data name="ClearScreen" xml:space="preserve">
+    <value>清屏</value>
+  </data>
+  <data name="EnterContent" xml:space="preserve">
+    <value>请输入发送内容</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="HexSend" xml:space="preserve">
+    <value>十六进制发送</value>
+  </data>
+  <data name="SendInterval" xml:space="preserve">
+    <value>发送间隔</value>
+  </data>
+  <data name="ScheduledSend" xml:space="preserve">
+    <value>定时发送</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
 </root>

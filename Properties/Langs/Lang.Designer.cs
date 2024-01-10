@@ -70,11 +70,47 @@ namespace Assistant.Properties.Langs {
         }
         
         /// <summary>
+        ///   查找类似 波特率 的本地化字符串。
+        /// </summary>
+        public static string BaudRate {
+            get {
+                return ResourceManager.GetString("BaudRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 取消 的本地化字符串。
         /// </summary>
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 校验位 的本地化字符串。
+        /// </summary>
+        public static string CheckBits {
+            get {
+                return ResourceManager.GetString("CheckBits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 清屏 的本地化字符串。
+        /// </summary>
+        public static string ClearScreen {
+            get {
+                return ResourceManager.GetString("ClearScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 关闭 的本地化字符串。
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
             }
         }
         
@@ -88,11 +124,83 @@ namespace Assistant.Properties.Langs {
         }
         
         /// <summary>
+        ///   查找类似 数据位 的本地化字符串。
+        /// </summary>
+        public static string DataBits {
+            get {
+                return ResourceManager.GetString("DataBits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请输入发送内容 的本地化字符串。
+        /// </summary>
+        public static string EnterContent {
+            get {
+                return ResourceManager.GetString("EnterContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 十六进制发送 的本地化字符串。
+        /// </summary>
+        public static string HexSend {
+            get {
+                return ResourceManager.GetString("HexSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 消息 的本地化字符串。
         /// </summary>
         public static string Message {
             get {
                 return ResourceManager.GetString("Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 打开 的本地化字符串。
+        /// </summary>
+        public static string Open {
+            get {
+                return ResourceManager.GetString("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 端口 的本地化字符串。
+        /// </summary>
+        public static string Port {
+            get {
+                return ResourceManager.GetString("Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 定时发送 的本地化字符串。
+        /// </summary>
+        public static string ScheduledSend {
+            get {
+                return ResourceManager.GetString("ScheduledSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 发送 的本地化字符串。
+        /// </summary>
+        public static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 发送间隔 的本地化字符串。
+        /// </summary>
+        public static string SendInterval {
+            get {
+                return ResourceManager.GetString("SendInterval", resourceCulture);
             }
         }
         
@@ -111,6 +219,15 @@ namespace Assistant.Properties.Langs {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 停止位 的本地化字符串。
+        /// </summary>
+        public static string StopBits {
+            get {
+                return ResourceManager.GetString("StopBits", resourceCulture);
             }
         }
         

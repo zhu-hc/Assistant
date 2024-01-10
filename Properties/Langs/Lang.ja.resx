@@ -141,4 +141,43 @@
   <data name="Welcome" xml:space="preserve">
     <value>ようこそ</value>
   </data>
+  <data name="Port" xml:space="preserve">
+    <value>港</value>
+  </data>
+  <data name="BaudRate" xml:space="preserve">
+    <value>ボーレート</value>
+  </data>
+  <data name="DataBits" xml:space="preserve">
+    <value>データビット</value>
+  </data>
+  <data name="StopBits" xml:space="preserve">
+    <value>ストップビット</value>
+  </data>
+  <data name="CheckBits" xml:space="preserve">
+    <value>チェックディジット</value>
+  </data>
+  <data name="ClearScreen" xml:space="preserve">
+    <value>粛清</value>
+  </data>
+  <data name="EnterContent" xml:space="preserve">
+    <value>送信内容を入力してください</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="HexSend" xml:space="preserve">
+    <value>16 進数送信</value>
+  </data>
+  <data name="SendInterval" xml:space="preserve">
+    <value>送信間隔</value>
+  </data>
+  <data name="ScheduledSend" xml:space="preserve">
+    <value>スケジュールされた送信</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>開ける</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>閉める</value>
+  </data>
 </root>

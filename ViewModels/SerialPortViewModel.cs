@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Markup;
+using Assistant.Data.Models;
 using Assistant.Services;
 using Assistant.Tools.Extensions;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -57,7 +58,7 @@ namespace Assistant.ViewModels
         [ObservableProperty]
         private String autoInterval;
 
-        public String BtnName => IsOpen ? "关闭" : "打开";
+        public String BtnName => IsOpen ? LangKeys.Close : LangKeys.Open;
 
         private SerialPort sp = new SerialPort();
         private Timer timer = new Timer();
