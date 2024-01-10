@@ -180,4 +180,19 @@
   <data name="Close" xml:space="preserve">
     <value>关闭</value>
   </data>
+  <data name="PleaseOpenSerial" xml:space="preserve">
+    <value>请先打开串口</value>
+  </data>
+  <data name="PleaseInputHex" xml:space="preserve">
+    <value>请输入有效的十六进制字符串</value>
+  </data>
+  <data name="DataBitsError" xml:space="preserve">
+    <value>数据位错误</value>
+  </data>
+  <data name="StopBitsError" xml:space="preserve">
+    <value>停止位错误</value>
+  </data>
+  <data name="CheckBitsError" xml:space="preserve">
+    <value>校验位错误</value>
+  </data>
 </root>

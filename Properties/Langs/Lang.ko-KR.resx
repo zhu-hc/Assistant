@@ -180,4 +180,19 @@
   <data name="Close" xml:space="preserve">
     <value>닫다</value>
   </data>
+  <data name="PleaseOpenSerial" xml:space="preserve">
+    <value>먼저 직렬 포트를 여십시오</value>
+  </data>
+  <data name="PleaseInputHex" xml:space="preserve">
+    <value>올바른 16진수 문자열을 입력하십시오</value>
+  </data>
+  <data name="DataBitsError" xml:space="preserve">
+    <value>데이터 비트가 잘못되었습니다</value>
+  </data>
+  <data name="StopBitsError" xml:space="preserve">
+    <value>정지 비트 오류</value>
+  </data>
+  <data name="CheckBitsError" xml:space="preserve">
+    <value>검사 숫자가 잘못되었습니다</value>
+  </data>
 </root>

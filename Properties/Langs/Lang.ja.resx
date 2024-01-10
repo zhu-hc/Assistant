@@ -180,4 +180,19 @@
   <data name="Close" xml:space="preserve">
     <value>閉める</value>
   </data>
+  <data name="PleaseOpenSerial" xml:space="preserve">
+    <value>最初にシリアルポートを開いてください</value>
+  </data>
+  <data name="PleaseInputHex" xml:space="preserve">
+    <value>有効な 16 進数文字列を入力してください</value>
+  </data>
+  <data name="DataBitsError" xml:space="preserve">
+    <value>データビットが正しくない</value>
+  </data>
+  <data name="StopBitsError" xml:space="preserve">
+    <value>ストップビットエラー</value>
+  </data>
+  <data name="CheckBitsError" xml:space="preserve">
+    <value>チェックディジットが正しくない</value>
+  </data>
 </root>

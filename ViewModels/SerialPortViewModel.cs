@@ -6,6 +6,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows;
 using System.Windows.Markup;
 using Assistant.Data.Models;
 using Assistant.Services;
@@ -151,7 +152,7 @@ namespace Assistant.ViewModels
                         "6 Bit" => 6,
                         "7 Bit" => 7,
                         "8 Bit" => 8,
-                        _ => throw new Exception("数据位错误"),
+                        _ => throw new Exception(I18NExtension.Translate(LangKeys.DataBitsError)),
                     };
                     sp.StopBits = StopBits switch
                     {
@@ -159,7 +160,7 @@ namespace Assistant.ViewModels
                         "1 Bit" => System.IO.Ports.StopBits.One,
                         "2 Bit" => System.IO.Ports.StopBits.Two,
                         "1.5 Bit" => System.IO.Ports.StopBits.OnePointFive,
-                        _ => throw new Exception("停止位错误"),
+                        _ => throw new Exception(I18NExtension.Translate(LangKeys.StopBitsError)),
                     };
                     sp.Parity = Parity switch
                     {
@@ -168,7 +169,7 @@ namespace Assistant.ViewModels
                         "Even" => System.IO.Ports.Parity.Even,
                         "Mark" => System.IO.Ports.Parity.Mark,
                         "Space" => System.IO.Ports.Parity.Space,
-                        _ => throw new Exception("校验位错误"),
+                        _ => throw new Exception(I18NExtension.Translate(LangKeys.CheckBitsError)),
                     };
                     sp.Open();
                     String str = $"{PortName},{BaudRate},{DataBits},{StopBits},{Parity}";
@@ -198,11 +199,11 @@ namespace Assistant.ViewModels
             {
                 String content = (String)paras[0];
                 Boolean isHex = (Boolean)paras[1];
-                if (String.IsNullOrEmpty(content)) throw new Exception("请输入发送内容");
-                if (!sp.IsOpen) throw new Exception("请先打开串口");
+                if (String.IsNullOrEmpty(content)) throw new Exception(I18NExtension.Translate(LangKeys.EnterContent));
+                if (!sp.IsOpen) throw new Exception(I18NExtension.Translate(LangKeys.PleaseOpenSerial));
                 if (isHex)
                 {
-                    if (!HexStringExtension.IsValid(content)) throw new Exception("请输入有效的十六进制字符串");
+                    if (!HexStringExtension.IsValid(content)) throw new Exception(I18NExtension.Translate(LangKeys.PleaseInputHex));
                     WriteBytes(HexStringExtension.ToBytes(content));
                 }
                 else

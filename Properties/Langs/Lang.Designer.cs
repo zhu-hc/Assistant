@@ -97,6 +97,15 @@ namespace Assistant.Properties.Langs {
         }
         
         /// <summary>
+        ///   查找类似 校验位错误 的本地化字符串。
+        /// </summary>
+        public static string CheckBitsError {
+            get {
+                return ResourceManager.GetString("CheckBitsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 清屏 的本地化字符串。
         /// </summary>
         public static string ClearScreen {
@@ -133,6 +142,15 @@ namespace Assistant.Properties.Langs {
         }
         
         /// <summary>
+        ///   查找类似 数据位错误 的本地化字符串。
+        /// </summary>
+        public static string DataBitsError {
+            get {
+                return ResourceManager.GetString("DataBitsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 请输入发送内容 的本地化字符串。
         /// </summary>
         public static string EnterContent {
@@ -165,6 +183,24 @@ namespace Assistant.Properties.Langs {
         public static string Open {
             get {
                 return ResourceManager.GetString("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请输入有效的十六进制字符串 的本地化字符串。
+        /// </summary>
+        public static string PleaseInputHex {
+            get {
+                return ResourceManager.GetString("PleaseInputHex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请先打开串口 的本地化字符串。
+        /// </summary>
+        public static string PleaseOpenSerial {
+            get {
+                return ResourceManager.GetString("PleaseOpenSerial", resourceCulture);
             }
         }
         
@@ -228,6 +264,15 @@ namespace Assistant.Properties.Langs {
         public static string StopBits {
             get {
                 return ResourceManager.GetString("StopBits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 停止位错误 的本地化字符串。
+        /// </summary>
+        public static string StopBitsError {
+            get {
+                return ResourceManager.GetString("StopBitsError", resourceCulture);
             }
         }
         

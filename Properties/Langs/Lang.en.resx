@@ -180,4 +180,19 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="PleaseOpenSerial" xml:space="preserve">
+    <value>Please open the serial port first</value>
+  </data>
+  <data name="PleaseInputHex" xml:space="preserve">
+    <value>Please enter a valid hexadecimal string</value>
+  </data>
+  <data name="DataBitsError" xml:space="preserve">
+    <value>The data bit is incorrect</value>
+  </data>
+  <data name="StopBitsError" xml:space="preserve">
+    <value>Stop bit error</value>
+  </data>
+  <data name="CheckBitsError" xml:space="preserve">
+    <value>The check digit is incorrect</value>
+  </data>
 </root>
