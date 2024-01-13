@@ -62,7 +62,7 @@
                        IsTabFillEnabled="True"
                        Margin="0 5 5 5"
                        ItemsSource="{Binding Tabs}"
-                       SelectedIndex="0">
+                       SelectedIndex="{Binding TabIndex}">
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

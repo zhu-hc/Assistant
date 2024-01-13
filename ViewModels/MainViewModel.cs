@@ -19,10 +19,13 @@ namespace Assistant.ViewModels
     public partial class MainViewModel : ViewModelBase
     {
         [ObservableProperty]
-        public UIElement? mainView;
+        private UIElement? mainView;
 
         [ObservableProperty]
-        public ObservableCollection<TabItem> tabs;
+        private ObservableCollection<TabItem> tabs;
+
+        [ObservableProperty]
+        private Int32 tabIndex;
 
         private readonly NavigationService navigator;
         private readonly DialogService dialog;
@@ -34,6 +37,7 @@ namespace Assistant.ViewModels
             this.logger = logger;
 
             Tabs = new ObservableCollection<TabItem>();
+            TabIndex = 0;
 
             navigator.MainViewChanged += (s, e) =>
             {
@@ -53,6 +57,7 @@ namespace Assistant.ViewModels
                 Icon = "\ue633",
             };
             Tabs.Add(tab);
+            TabIndex = Tabs.Count - 1;
         }
 
         [RelayCommand]
@@ -87,6 +92,7 @@ namespace Assistant.ViewModels
                 Icon = "\ue62c",
             };
             Tabs.Add(tab);
+            TabIndex = Tabs.Count - 1;
         }
 
         [RelayCommand]
@@ -99,6 +105,7 @@ namespace Assistant.ViewModels
                 Icon = "\ue795",
             };
             Tabs.Add(tab);
+            TabIndex = Tabs.Count - 1;
         }
     }
 }
