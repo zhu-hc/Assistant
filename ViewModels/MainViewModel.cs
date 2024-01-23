@@ -107,5 +107,18 @@ namespace Assistant.ViewModels
             Tabs.Add(tab);
             TabIndex = Tabs.Count - 1;
         }
+
+        [RelayCommand]
+        public void OpenSocket()
+        {
+            var tab = new TabItem
+            {
+                Header = LangKeys.Socket,
+                Content = App.Current.Services.GetRequiredService<SocketView>(),
+                Icon = "\ue65f",
+            };
+            Tabs.Add(tab);
+            TabIndex = Tabs.Count - 1;
+        }
     }
 }

@@ -195,4 +195,7 @@
   <data name="CheckBitsError" xml:space="preserve">
     <value>The check digit is incorrect</value>
   </data>
+  <data name="Socket" xml:space="preserve">
+    <value>Socket</value>
+  </data>
 </root>

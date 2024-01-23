@@ -46,9 +46,32 @@
                 </Button>
                 <Button Height="48"
                         Width="48"
-                        ToolTip="{I18N {x:Static models:LangKeys.Settings}}"
-                        Command="{Binding OpenSettingsCommand}"
+                        ToolTip="TCP"
+                        Margin="0 10"
+                        Command="{Binding OpenSocketCommand}">
+                    <TextBlock Text="&#xe65f;"
+                               Style="{StaticResource Icon}"
+                               FontSize="24" />
+                </Button>
+                <Button Height="48"
+                        Width="48"
+                        ToolTip="MQTT">
+                    <TextBlock Text="&#xe625;"
+                               Style="{StaticResource Icon}"
+                               FontSize="28" />
+                </Button>
+                <Button Height="48"
+                        Width="48"
+                        ToolTip="Modbus"
                         Margin="0 10">
+                    <TextBlock Text="&#xe682;"
+                               Style="{StaticResource Icon}"
+                               FontSize="34" />
+                </Button>
+                <Button Height="48"
+                        Width="48"
+                        ToolTip="{I18N {x:Static models:LangKeys.Settings}}"
+                        Command="{Binding OpenSettingsCommand}">
                     <TextBlock Text="&#xe795;"
                                Style="{StaticResource Icon}"
                                FontSize="30" />

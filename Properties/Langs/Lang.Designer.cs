@@ -259,6 +259,15 @@ namespace Assistant.Properties.Langs {
         }
         
         /// <summary>
+        ///   查找类似 网络 的本地化字符串。
+        /// </summary>
+        public static string Socket {
+            get {
+                return ResourceManager.GetString("Socket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 停止位 的本地化字符串。
         /// </summary>
         public static string StopBits {

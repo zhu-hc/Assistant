@@ -195,4 +195,7 @@
   <data name="CheckBitsError" xml:space="preserve">
     <value>校验位错误</value>
   </data>
+  <data name="Socket" xml:space="preserve">
+    <value>网络</value>
+  </data>
 </root>

@@ -64,6 +64,14 @@ namespace Assistant
                 };
             });
 
+            container.AddSingleton<SocketViewModel>();
+            container.AddSingleton<SocketView>(sp => {
+                return new SocketView
+                {
+                    DataContext = sp.GetRequiredService<SocketViewModel>()
+                };
+            });
+
             container.AddSingleton<SettingsViewModel>();
             container.AddSingleton<SettingsView>(sp => {
                 return new SettingsView
