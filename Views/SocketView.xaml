@@ -7,10 +7,16 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:vm="clr-namespace:Assistant.ViewModels"
              xmlns:models="clr-namespace:Assistant.Data.Models"
+             xmlns:converters="clr-namespace:Assistant.Tools.Converters"
+             xmlns:conv="clr-namespace:ValueConverters;assembly=ValueConverters"
              d:DataContext="{d:DesignInstance Type=vm:SocketViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="450"
-             d:DesignWidth="800">
+             d:DesignWidth="800"
+             DataContextChanged="UserControl_DataContextChanged">
+    <UserControl.Resources>
+        <converters:SocketProtocolToBooleanConverter x:Key="SocketProtocolToBooleanConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -29,7 +35,8 @@
                         <ComboBox Style="{StaticResource ComboBoxExtend}"
                                   HorizontalContentAlignment="Center"
                                   SelectedIndex="0"
-                                  ToolTip="协议类型">
+                                  ToolTip="协议类型"
+                                  Text="{Binding Protocol,Mode=OneWayToSource}">
                             <ComboBoxItem Content="UDP Client" />
                             <ComboBoxItem Content="UDP Server" />
                             <ComboBoxItem Content="TCP Client" />
@@ -40,13 +47,14 @@
                                   SelectedIndex="0"
                                   ToolTip="IP地址"
                                   Margin="0 8"
-                                  IsEditable="True">
+                                  IsEditable="{Binding Protocol,Converter={StaticResource SocketProtocolToBooleanConverter}}"
+                                  Name="cbIP"
+                                  DropDownOpened="cbIP_DropDownOpened">
                             <ComboBoxItem Content="127.0.0.1" />
-                            <ComboBoxItem Content="192.168.0.1" />
                         </ComboBox>
                         <TextBox HorizontalContentAlignment="Center"
                                  ToolTip="端口"
-                                 Text="8080" />
+                                 Text="{Binding Port}" />
                         <Button Content="打开"
                                 Margin="0 8 0 0"
                                 HorizontalAlignment="Stretch"
@@ -63,7 +71,8 @@
                                     HorizontalAlignment="Left"
                                     Margin="0 5">
                             <ToggleButton HorizontalAlignment="Center"
-                                          Style="{StaticResource ToggleButtonSwitch}" />
+                                          Style="{StaticResource ToggleButtonSwitch}"
+                                          IsChecked="{Binding IsHexReceive}"/>
                             <TextBlock Text="HEX接收"
                                        Margin="5 0"
                                        Foreground="{DynamicResource PrimaryTextBrush}" />
@@ -73,7 +82,8 @@
                                         HorizontalAlignment="Left"
                                         Margin="0 5">
                                 <ToggleButton HorizontalAlignment="Center"
-                                              Style="{StaticResource ToggleButtonSwitch}" />
+                                              Style="{StaticResource ToggleButtonSwitch}" 
+                                              IsChecked="{Binding IsLogMode}"/>
                                 <TextBlock Text="日志模式"
                                            Margin="5 0"
                                            Foreground="{DynamicResource PrimaryTextBrush}" />
@@ -84,7 +94,8 @@
                                         HorizontalAlignment="Left"
                                         Margin="0 5">
                                 <ToggleButton HorizontalAlignment="Center"
-                                              Style="{StaticResource ToggleButtonSwitch}" />
+                                              Style="{StaticResource ToggleButtonSwitch}"
+                                              IsChecked="{Binding IsAutoNewline}"/>
                                 <TextBlock Text="自动换行"
                                            Margin="5 0"
                                            Foreground="{DynamicResource PrimaryTextBrush}" />
@@ -95,7 +106,8 @@
                                         HorizontalAlignment="Left"
                                         Margin="0 5">
                                 <ToggleButton HorizontalAlignment="Center"
-                                              Style="{StaticResource ToggleButtonSwitch}" />
+                                              Style="{StaticResource ToggleButtonSwitch}"
+                                              IsChecked="{Binding IsIgnoreReceive}"/>
                                 <TextBlock Text="忽略接收"
                                            Margin="5 0"
                                            Foreground="{DynamicResource PrimaryTextBrush}" />
@@ -111,7 +123,8 @@
                                     HorizontalAlignment="Left"
                                     Margin="0 5">
                             <ToggleButton HorizontalAlignment="Center"
-                                          Style="{StaticResource ToggleButtonSwitch}" />
+                                          Style="{StaticResource ToggleButtonSwitch}"
+                                          IsChecked="{Binding IsHexTransmit}"/>
                             <TextBlock Text="HEX发送"
                                        Margin="5 0"
                                        Foreground="{DynamicResource PrimaryTextBrush}" />
@@ -120,7 +133,8 @@
                                     HorizontalAlignment="Left"
                                     Margin="0 5">
                             <ToggleButton HorizontalAlignment="Center"
-                                          Style="{StaticResource ToggleButtonSwitch}" />
+                                          Style="{StaticResource ToggleButtonSwitch}"
+                                          IsChecked="{Binding IsLoopTransmit}"/>
                             <TextBlock Text="循环发送"
                                        Margin="5 0"
                                        Foreground="{DynamicResource PrimaryTextBrush}" />
@@ -128,7 +142,7 @@
                         <TextBox Margin="0 5 0 0"
                                  HorizontalContentAlignment="Center"
                                  ToolTip="发送周期"
-                                 Text="1000" />
+                                 Text="{Binding Time}" />
                     </StackPanel>
                 </Border>
             </DockPanel>
@@ -213,20 +227,21 @@
                         HorizontalAlignment="Right">
                 <TextBlock TextAlignment="Center"
                            ToolTip="接收/发送帧数"
-                           Text="0/0"
+                           Text="{Binding FrameCount}"
                            Width="200"
                            Foreground="{DynamicResource PrimaryTextBrush}"/>
                 <TextBlock TextAlignment="Center"
                            ToolTip="接收字节数"
-                           Text="RX:0"
+                           Text="{Binding RxByteCount, StringFormat=RX:{0}}"
                            Width="200"
                            Foreground="{DynamicResource PrimaryTextBrush}"/>
                 <TextBlock TextAlignment="Center"
                            ToolTip="发送字节数"
-                           Text="TX:0"
+                           Text="{Binding TxByteCount, StringFormat=TX:{0}}"
                            Width="200"
                            Foreground="{DynamicResource PrimaryTextBrush}"/>
-                <Button Content="复位计数" />
+                <Button Content="复位计数"
+                        Command="{Binding ResetCountCommand}"/>
             </StackPanel>
         </Border>
     </Grid>

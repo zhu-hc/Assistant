@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
+    <Version>1.2024.422.1050</Version>
+    <IncrementVersionOnBuild>1.yyyy.Mdd.Hmm</IncrementVersionOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,7 +34,7 @@
     <PackageReference Include="AvalonEdit" Version="6.3.0.90" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="FluentScheduler" Version="5.5.1" />
-    <PackageReference Include="HandyControls" Version="3.5.0" />
+    <PackageReference Include="HandyControls" Version="3.5.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
