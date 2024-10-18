@@ -16,6 +16,9 @@
              DataContextChanged="UserControl_DataContextChanged">
     <UserControl.Resources>
         <converters:SocketProtocolToBooleanConverter x:Key="SocketProtocolToBooleanConverter" />
+        <converters:ProtocolToClientsVisibility x:Key="ProtocolToClientsVisibility" />
+        <converters:ProtocolToTargetVisibility x:Key="ProtocolToTargetVisibility" />
+        <conv:BoolInverter x:Key="BoolInverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -24,7 +27,7 @@
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="210" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <DockPanel>
@@ -34,32 +37,37 @@
                     <StackPanel Orientation="Vertical">
                         <ComboBox Style="{StaticResource ComboBoxExtend}"
                                   HorizontalContentAlignment="Center"
+                                  Name="protocol"
                                   SelectedIndex="0"
-                                  ToolTip="协议类型"
-                                  Text="{Binding Protocol,Mode=OneWayToSource}">
-                            <ComboBoxItem Content="UDP Client" />
-                            <ComboBoxItem Content="UDP Server" />
+                                  ToolTip="{I18N {x:Static models:LangKeys.Protocol}}"
+                                  Text="{Binding Protocol,Mode=OneWayToSource}"
+                                  IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}">
                             <ComboBoxItem Content="TCP Client" />
                             <ComboBoxItem Content="TCP Server" />
+                            <ComboBoxItem Content="UDP" />
                         </ComboBox>
                         <ComboBox Style="{StaticResource ComboBoxExtend}"
                                   HorizontalContentAlignment="Center"
                                   SelectedIndex="0"
-                                  ToolTip="IP地址"
+                                  ToolTip="{I18N {x:Static models:LangKeys.IpAddress}}"
                                   Margin="0 8"
                                   IsEditable="{Binding Protocol,Converter={StaticResource SocketProtocolToBooleanConverter}}"
+                                  IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}"
                                   Name="cbIP"
-                                  DropDownOpened="cbIP_DropDownOpened">
+                                  DropDownOpened="cbIP_DropDownOpened"
+                                  Text="{Binding Address,Mode=OneWayToSource}">
                             <ComboBoxItem Content="127.0.0.1" />
                         </ComboBox>
                         <TextBox HorizontalContentAlignment="Center"
-                                 ToolTip="端口"
-                                 Text="{Binding Port}" />
-                        <Button Content="打开"
+                                 ToolTip="{I18N {x:Static models:LangKeys.Port}}"
+                                 Text="{Binding Port}"
+                                 IsEnabled="{Binding IsOpen, Converter={StaticResource BoolInverter}}"/>
+                        <Button Content="{I18N {Binding BtnName}}"
                                 Margin="0 8 0 0"
                                 HorizontalAlignment="Stretch"
                                 FontSize="16"
-                                Height="36">
+                                Height="36"
+                                Command="{Binding OpenCommand}">
                         </Button>
                     </StackPanel>
                 </Border>
@@ -73,7 +81,7 @@
                             <ToggleButton HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
                                           IsChecked="{Binding IsHexReceive}"/>
-                            <TextBlock Text="HEX接收"
+                            <TextBlock Text="{I18N {x:Static models:LangKeys.HexReceive}}"
                                        Margin="5 0"
                                        Foreground="{DynamicResource PrimaryTextBrush}" />
                         </StackPanel>
@@ -84,7 +92,7 @@
                                 <ToggleButton HorizontalAlignment="Center"
                                               Style="{StaticResource ToggleButtonSwitch}" 
                                               IsChecked="{Binding IsLogMode}"/>
-                                <TextBlock Text="日志模式"
+                                <TextBlock Text="{I18N {x:Static models:LangKeys.LogMode}}"
                                            Margin="5 0"
                                            Foreground="{DynamicResource PrimaryTextBrush}" />
                             </StackPanel>
@@ -96,7 +104,7 @@
                                 <ToggleButton HorizontalAlignment="Center"
                                               Style="{StaticResource ToggleButtonSwitch}"
                                               IsChecked="{Binding IsAutoNewline}"/>
-                                <TextBlock Text="自动换行"
+                                <TextBlock Text="{I18N {x:Static models:LangKeys.AutoWrap}}"
                                            Margin="5 0"
                                            Foreground="{DynamicResource PrimaryTextBrush}" />
                             </StackPanel>
@@ -108,7 +116,7 @@
                                 <ToggleButton HorizontalAlignment="Center"
                                               Style="{StaticResource ToggleButtonSwitch}"
                                               IsChecked="{Binding IsIgnoreReceive}"/>
-                                <TextBlock Text="忽略接收"
+                                <TextBlock Text="{I18N {x:Static models:LangKeys.IgnoreReceive}}"
                                            Margin="5 0"
                                            Foreground="{DynamicResource PrimaryTextBrush}" />
                             </StackPanel>
@@ -125,7 +133,7 @@
                             <ToggleButton HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
                                           IsChecked="{Binding IsHexTransmit}"/>
-                            <TextBlock Text="HEX发送"
+                            <TextBlock Text="{I18N {x:Static models:LangKeys.HexTransmit}}"
                                        Margin="5 0"
                                        Foreground="{DynamicResource PrimaryTextBrush}" />
                         </StackPanel>
@@ -134,14 +142,15 @@
                                     Margin="0 5">
                             <ToggleButton HorizontalAlignment="Center"
                                           Style="{StaticResource ToggleButtonSwitch}"
+                                          Command="{Binding AutoCommand}"
                                           IsChecked="{Binding IsLoopTransmit}"/>
-                            <TextBlock Text="循环发送"
+                            <TextBlock Text="{I18N {x:Static models:LangKeys.AutoTransmit}}"
                                        Margin="5 0"
                                        Foreground="{DynamicResource PrimaryTextBrush}" />
                         </StackPanel>
                         <TextBox Margin="0 5 0 0"
                                  HorizontalContentAlignment="Center"
-                                 ToolTip="发送周期"
+                                 ToolTip="{I18N {x:Static models:LangKeys.SendInterval}}"
                                  Text="{Binding Time}" />
                     </StackPanel>
                 </Border>
@@ -172,24 +181,36 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <DockPanel>
+                            <TextBox DockPanel.Dock="Left"
+                                     HorizontalContentAlignment="Center"
+                                     Width="300"
+                                     Text="{Binding UdpTarget}"
+                                     Visibility="{Binding ElementName=protocol,Path=Text,Converter={StaticResource ProtocolToTargetVisibility}}"
+                                     ToolTip="{I18N {x:Static models:LangKeys.SendTarget}}" />
                             <TextBlock DockPanel.Dock="Left"
-                                       Text="客户端"
+                                       Text="{I18N {x:Static models:LangKeys.Client}}"
+                                       Visibility="{Binding ElementName=protocol,Path=Text,Converter={StaticResource ProtocolToClientsVisibility}}"
                                        Foreground="{DynamicResource PrimaryTextBrush}"/>
                             <Button DockPanel.Dock="Right"
-                                    Content="清除↑" />
+                                    Content="{I18N {x:Static models:LangKeys.ClearUp}}" 
+                                    Command="{Binding ClearReceiveCommand}"/>
                             <Button DockPanel.Dock="Right"
-                                    Content="清除↓"
-                                    Margin="5 0" />
+                                    Content="{I18N {x:Static models:LangKeys.ClearDown}}"
+                                    Margin="5 0" 
+                                    Command="{Binding ClearTransmitCommand}"/>
                             <Button DockPanel.Dock="Right"
-                                    Content="断开" />
+                                    Content="{I18N {x:Static models:LangKeys.Disconnect}}"
+                                    Visibility="{Binding ElementName=protocol,Path=Text,Converter={StaticResource ProtocolToClientsVisibility}}"
+                                    Command="{Binding CloseClientCommand}"/>
                             <ComboBox Style="{StaticResource ComboBoxExtend}"
                                       HorizontalContentAlignment="Center"
                                       SelectedIndex="0"
-                                      ToolTip="客户端"
-                                      Margin="5 0">
-                                <ComboBoxItem Content="ALL Client(2)" />
-                                <ComboBoxItem Content="Client 0" />
-                                <ComboBoxItem Content="Client 1" />
+                                      ToolTip="{I18N {x:Static models:LangKeys.Client}}"
+                                      Margin="5 0"
+                                      Name="clients"
+                                      Text="{Binding ClientText,Mode=OneWayToSource}"
+                                      Visibility="{Binding ElementName=protocol,Path=Text,Converter={StaticResource ProtocolToClientsVisibility}}">
+                                <ComboBoxItem Content="ALL Client(0)" />
                             </ComboBox>
                         </DockPanel>
                         <Grid Grid.Row="1">
@@ -207,8 +228,11 @@
                                      Name="tbContent"/>
                             <Button Grid.Column="1"
                                     Margin="10 10 0 0"
-                                    Content="发送"
+                                    Content="{I18N {x:Static models:LangKeys.Send}}"
                                     FontSize="16"
+                                    Name="mainTransmit"
+                                    Command="{Binding TransmitCommand}"
+                                    CommandParameter="{Binding ElementName=tbContent,Path=Text}"
                                     HorizontalAlignment="Stretch"
                                     Foreground="{DynamicResource PrimaryBrush}"
                                     Height="{Binding ElementName=tbContent, Path=ActualHeight}"/>
@@ -226,21 +250,21 @@
                         Margin="5"
                         HorizontalAlignment="Right">
                 <TextBlock TextAlignment="Center"
-                           ToolTip="接收/发送帧数"
+                           ToolTip="{I18N {x:Static models:LangKeys.RxTxFrames}}"
                            Text="{Binding FrameCount}"
                            Width="200"
                            Foreground="{DynamicResource PrimaryTextBrush}"/>
                 <TextBlock TextAlignment="Center"
-                           ToolTip="接收字节数"
+                           ToolTip="{I18N {x:Static models:LangKeys.ReceiveBytes}}"
                            Text="{Binding RxByteCount, StringFormat=RX:{0}}"
                            Width="200"
                            Foreground="{DynamicResource PrimaryTextBrush}"/>
                 <TextBlock TextAlignment="Center"
-                           ToolTip="发送字节数"
+                           ToolTip="{I18N {x:Static models:LangKeys.TransmitBytes}}"
                            Text="{Binding TxByteCount, StringFormat=TX:{0}}"
                            Width="200"
                            Foreground="{DynamicResource PrimaryTextBrush}"/>
-                <Button Content="复位计数"
+                <Button Content="{I18N {x:Static models:LangKeys.ResetCount}}"
                         Command="{Binding ResetCountCommand}"/>
             </StackPanel>
         </Border>

@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Assistant.Tools.Helpers;
 using Assistant.ViewModels;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace Assistant.Views
 {
@@ -33,9 +34,35 @@ namespace Assistant.Views
         {
             if (this.DataContext is SocketViewModel vm)
             {
-                vm.messenger.Register<SocketView, String, String>(this, "Clear", (s, e) => {
+                vm.messenger.Register<SocketView, String, String>(this, "Text", (s, e) => {
+                    Application.Current.Dispatcher.BeginInvoke(() => {
+                        TextEditor.AppendText(e);
+                        TextEditor.ScrollToEnd();
+                    });
+                });
+                vm.messenger.Register<SocketView, String, String>(this, "ClearReceive", (s, e) => {
                     Application.Current.Dispatcher.BeginInvoke(() => {
                         TextEditor.Clear();
+                    });
+                });
+                vm.messenger.Register<SocketView, String, String>(this, "ClearTransmit", (s, e) => {
+                    Application.Current.Dispatcher.BeginInvoke(() => {
+                        tbContent.Clear();
+                    });
+                });
+                vm.messenger.Register<SocketView, String[], String>(this, "Clients", (s, e) => {
+                    Application.Current.Dispatcher.BeginInvoke(() => {
+                        clients.Items.Clear();
+                        foreach (var item in e)
+                        {
+                            clients.Items.Add(item);
+                        }
+                        clients.SelectedIndex = 0;
+                    });
+                });
+                vm.messenger.Register<SocketView, String, String>(this, "Transmit", (s, e) => {
+                    Application.Current.Dispatcher.BeginInvoke(() => {
+                        mainTransmit.Command.Execute(mainTransmit.CommandParameter);
                     });
                 });
             }

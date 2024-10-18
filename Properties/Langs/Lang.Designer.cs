@@ -70,6 +70,24 @@ namespace Assistant.Properties.Langs {
         }
         
         /// <summary>
+        ///   查找类似 自动发送 的本地化字符串。
+        /// </summary>
+        public static string AutoTransmit {
+            get {
+                return ResourceManager.GetString("AutoTransmit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 自动换行 的本地化字符串。
+        /// </summary>
+        public static string AutoWrap {
+            get {
+                return ResourceManager.GetString("AutoWrap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 波特率 的本地化字符串。
         /// </summary>
         public static string BaudRate {
@@ -106,11 +124,38 @@ namespace Assistant.Properties.Langs {
         }
         
         /// <summary>
+        ///   查找类似 清除↓ 的本地化字符串。
+        /// </summary>
+        public static string ClearDown {
+            get {
+                return ResourceManager.GetString("ClearDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 清屏 的本地化字符串。
         /// </summary>
         public static string ClearScreen {
             get {
                 return ResourceManager.GetString("ClearScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 清除↑ 的本地化字符串。
+        /// </summary>
+        public static string ClearUp {
+            get {
+                return ResourceManager.GetString("ClearUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 客户端 的本地化字符串。
+        /// </summary>
+        public static string Client {
+            get {
+                return ResourceManager.GetString("Client", resourceCulture);
             }
         }
         
@@ -151,11 +196,29 @@ namespace Assistant.Properties.Langs {
         }
         
         /// <summary>
+        ///   查找类似 断开 的本地化字符串。
+        /// </summary>
+        public static string Disconnect {
+            get {
+                return ResourceManager.GetString("Disconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 请输入发送内容 的本地化字符串。
         /// </summary>
         public static string EnterContent {
             get {
                 return ResourceManager.GetString("EnterContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Hex接收 的本地化字符串。
+        /// </summary>
+        public static string HexReceive {
+            get {
+                return ResourceManager.GetString("HexReceive", resourceCulture);
             }
         }
         
@@ -169,11 +232,65 @@ namespace Assistant.Properties.Langs {
         }
         
         /// <summary>
+        ///   查找类似 Hex发送 的本地化字符串。
+        /// </summary>
+        public static string HexTransmit {
+            get {
+                return ResourceManager.GetString("HexTransmit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 忽略接收 的本地化字符串。
+        /// </summary>
+        public static string IgnoreReceive {
+            get {
+                return ResourceManager.GetString("IgnoreReceive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 IP地址 的本地化字符串。
+        /// </summary>
+        public static string IpAddress {
+            get {
+                return ResourceManager.GetString("IpAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 日志模式 的本地化字符串。
+        /// </summary>
+        public static string LogMode {
+            get {
+                return ResourceManager.GetString("LogMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 消息 的本地化字符串。
         /// </summary>
         public static string Message {
             get {
                 return ResourceManager.GetString("Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 扫雷 的本地化字符串。
+        /// </summary>
+        public static string Mine {
+            get {
+                return ResourceManager.GetString("Mine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 没有连接的客户端 的本地化字符串。
+        /// </summary>
+        public static string NoClient {
+            get {
+                return ResourceManager.GetString("NoClient", resourceCulture);
             }
         }
         
@@ -205,11 +322,56 @@ namespace Assistant.Properties.Langs {
         }
         
         /// <summary>
+        ///   查找类似 请先打开连接 的本地化字符串。
+        /// </summary>
+        public static string PleaseOpenSocket {
+            get {
+                return ResourceManager.GetString("PleaseOpenSocket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 端口 的本地化字符串。
         /// </summary>
         public static string Port {
             get {
                 return ResourceManager.GetString("Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 协议类型 的本地化字符串。
+        /// </summary>
+        public static string Protocol {
+            get {
+                return ResourceManager.GetString("Protocol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 接收字节数 的本地化字符串。
+        /// </summary>
+        public static string ReceiveBytes {
+            get {
+                return ResourceManager.GetString("ReceiveBytes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 复位计数 的本地化字符串。
+        /// </summary>
+        public static string ResetCount {
+            get {
+                return ResourceManager.GetString("ResetCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 接收/发送帧数 的本地化字符串。
+        /// </summary>
+        public static string RxTxFrames {
+            get {
+                return ResourceManager.GetString("RxTxFrames", resourceCulture);
             }
         }
         
@@ -237,6 +399,15 @@ namespace Assistant.Properties.Langs {
         public static string SendInterval {
             get {
                 return ResourceManager.GetString("SendInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 发送目标 的本地化字符串。
+        /// </summary>
+        public static string SendTarget {
+            get {
+                return ResourceManager.GetString("SendTarget", resourceCulture);
             }
         }
         
@@ -282,6 +453,15 @@ namespace Assistant.Properties.Langs {
         public static string StopBitsError {
             get {
                 return ResourceManager.GetString("StopBitsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 发送字节数 的本地化字符串。
+        /// </summary>
+        public static string TransmitBytes {
+            get {
+                return ResourceManager.GetString("TransmitBytes", resourceCulture);
             }
         }
         

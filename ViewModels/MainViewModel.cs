@@ -96,6 +96,19 @@ namespace Assistant.ViewModels
         }
 
         [RelayCommand]
+        public void OpenMine()
+        {
+            var tab = new TabItem
+            {
+                Header = LangKeys.Mine,
+                Content = App.Current.Services.GetRequiredService<MineView>(),
+                Icon = "\ue704",
+            };
+            Tabs.Add(tab);
+            TabIndex = Tabs.Count - 1;
+        }
+
+        [RelayCommand]
         public void OpenSettings()
         {
             var tab = new TabItem

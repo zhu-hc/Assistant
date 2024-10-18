@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assistant", "Assistant.csproj", "{CCA758FE-6095-4158-B5E5-6DA3B5AF88BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assistant", "Assistant.csproj", "{CCA758FE-6095-4158-B5E5-6DA3B5AF88BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		RESX_NeutralResourcesLanguage = zh-Hans
 		SolutionGuid = {4654E417-7C60-4F2D-8223-36C036980739}
 	EndGlobalSection
 EndGlobal

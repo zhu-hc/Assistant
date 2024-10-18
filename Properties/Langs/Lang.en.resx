@@ -198,4 +198,64 @@
   <data name="Socket" xml:space="preserve">
     <value>Socket</value>
   </data>
+  <data name="Mine" xml:space="preserve">
+    <value>Mine</value>
+  </data>
+  <data name="PleaseOpenSocket" xml:space="preserve">
+    <value>Please open the socket first</value>
+  </data>
+  <data name="NoClient" xml:space="preserve">
+    <value>No connected clients</value>
+  </data>
+  <data name="IpAddress" xml:space="preserve">
+    <value>IP Address</value>
+  </data>
+  <data name="Protocol" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="HexReceive" xml:space="preserve">
+    <value>Hex Receive</value>
+  </data>
+  <data name="LogMode" xml:space="preserve">
+    <value>Log Mode</value>
+  </data>
+  <data name="AutoWrap" xml:space="preserve">
+    <value>Auto Wrap</value>
+  </data>
+  <data name="IgnoreReceive" xml:space="preserve">
+    <value>Ignore Receive</value>
+  </data>
+  <data name="HexTransmit" xml:space="preserve">
+    <value>Hex Transmit</value>
+  </data>
+  <data name="AutoTransmit" xml:space="preserve">
+    <value>Auto Transmit</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>Disconnect</value>
+  </data>
+  <data name="ClearUp" xml:space="preserve">
+    <value>Clear↑</value>
+  </data>
+  <data name="ClearDown" xml:space="preserve">
+    <value>Clear↓</value>
+  </data>
+  <data name="ResetCount" xml:space="preserve">
+    <value>Reset count</value>
+  </data>
+  <data name="SendTarget" xml:space="preserve">
+    <value>Send Target</value>
+  </data>
+  <data name="ReceiveBytes" xml:space="preserve">
+    <value>Receive Bytes</value>
+  </data>
+  <data name="TransmitBytes" xml:space="preserve">
+    <value>Transmit Bytes</value>
+  </data>
+  <data name="RxTxFrames" xml:space="preserve">
+    <value>Rx/Tx Frames</value>
+  </data>
 </root>

@@ -70,6 +70,15 @@
                 </Button>
                 <Button Height="48"
                         Width="48"
+                        ToolTip="{I18N {x:Static models:LangKeys.Mine}}"
+                        Margin="0 10"
+                        Command="{Binding OpenMineCommand}">
+                    <TextBlock Text="&#xe704;"
+                               Style="{StaticResource Icon}"
+                               FontSize="28" />
+                </Button>
+                <Button Height="48"
+                        Width="48"
                         ToolTip="{I18N {x:Static models:LangKeys.Settings}}"
                         Command="{Binding OpenSettingsCommand}">
                     <TextBlock Text="&#xe795;"

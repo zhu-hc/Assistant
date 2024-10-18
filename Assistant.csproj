@@ -2,15 +2,17 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <Version>1.2024.422.1050</Version>
+    <Version>1.2024.1018.1811</Version>
     <IncrementVersionOnBuild>1.yyyy.Mdd.Hmm</IncrementVersionOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".gitattributes" />
+    <None Remove=".gitignore" />
     <None Remove="Resources\Fonts\Alibaba-PuHuiTi-Regular.ttf" />
     <None Remove="Resources\Fonts\iconfont.ttf" />
     <None Remove="Resources\Images\Flag\ca-Es.png" />
@@ -32,14 +34,15 @@
   <ItemGroup>
     <PackageReference Include="Antelcat.I18N.WPF" Version="1.0.1" />
     <PackageReference Include="AvalonEdit" Version="6.3.0.90" />
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageReference Include="FluentScheduler" Version="5.5.1" />
-    <PackageReference Include="HandyControls" Version="3.5.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="HandyControls" Version="3.5.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
     <PackageReference Include="System.IO.Ports" Version="8.0.0" />
-    <PackageReference Include="ValueConverters" Version="3.0.26" />
+    <PackageReference Include="TouchSocket" Version="2.1.9" />
+    <PackageReference Include="ValueConverters" Version="3.1.22" />
   </ItemGroup>
 
   <ItemGroup>
